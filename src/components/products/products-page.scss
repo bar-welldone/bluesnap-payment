@@ -1,0 +1,26 @@
+.products-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 12px;
+  color: white;
+  h1 {
+    margin-bottom: 4rem;
+    color: white;
+  }
+  .products-container {
+    display: flex;
+    margin-bottom: 2rem;
+    > div {
+      margin-right: 2rem;
+    }
+  }
+ 
+  .subscription-button {
+    position: fixed;
+    right: 24px;
+    top: 24px;
+  }
+}
