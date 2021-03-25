@@ -1,11 +1,12 @@
 import './products-page.scss'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ProductView from './Product'
 import allProducts from '../../data/productsConfig'
 import Product from '../../data/Product'
 import { Button } from 'antd'
 import qs from 'query-string'
 import PaymentModal from './PaymentModal'
+import { Link } from 'react-router-dom'
 
 
 const urlExtraParams = qs.stringify({
@@ -13,6 +14,14 @@ const urlExtraParams = qs.stringify({
 })
 
 const ProductsPage = () => {
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     console.log('called');
+  //     setProdcutPaymentUrl('http://localhost:3000/completed-buy')
+  //   }, 10000)
+  // }, [])
+  
   const [prodcutPaymentUrl, setProdcutPaymentUrl] = useState<string>()
   const [productTitle, setProdcutTitle] = useState<string>()
   const [hasSubscription, setHasSubscription] = useState(false)
@@ -45,13 +54,18 @@ const ProductsPage = () => {
       <Button className="subscription-button" onClick={toggleHasSubscription}>
         {hasSubscription ? 'User has subscription' : "User doesn't have subscription" }
       </Button>
+
+      <Link to="/hosted"> Check out hosted fields </Link>
+
         
+      {/* <PaymentModal srcUrl={prodcutPaymentUrl} onCancel={() => setProdcutPaymentUrl(undefined)}
+        title={productTitle}/> */}
+
       <PaymentModal srcUrl={prodcutPaymentUrl} onCancel={() => setProdcutPaymentUrl(undefined)}
         title={productTitle}/>
-{/*       
-      { prodcutPaymentUrl &&
-        <iframe id="iframe" title="product-purchase" src={prodcutPaymentUrl} />
-      } */}
+
+      {/* <button onClick={() => setProdcutPaymentUrl('http://localhost:3000/test')}> test redirect modal </button> */}
+      {/* <a href="https://sandbox.bluesnap.com/buynow/checkout?sku2690665=1&storeid=271191&shopperinfovisible=N"> go to prod </a> */}
 
     </div>
   )

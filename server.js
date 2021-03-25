@@ -1,7 +1,14 @@
-var fs = require('fs'),
-    https = require('https'),
-    express = require('express'),
-    path = require('path');
+const express = require('express')
+const fetch = require('node-fetch')
+    
+
+const getToken = async() => {
+  const a = await fetch('https://sandbox.bluesnap.com/services/2/payment-fields-tokens', {method: 'POST'})
+  console.log(a.headers)
+}
+
+getToken()
+
 
 // var privateKey = fs.readFileSync('./key.pem');
 // var certificate = fs.readFileSync('./cert.pem');
@@ -11,11 +18,12 @@ var fs = require('fs'),
 const app = express()
 const port = 8000
 
-app.listen()
+app.listen(port, () => {
+  console.log(`listening at: ${port}...`)
+})
 
-app.use((req, res) => {
+app.use('/', (req, res) => {
   console.log(req)
-  res.send('')
 })
 
 // https.createServer({
